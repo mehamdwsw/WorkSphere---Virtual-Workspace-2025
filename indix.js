@@ -1,10 +1,19 @@
-let arry_Staff = {
-  Rele: "",
+async function jsonAdd() {
+  let data= await fetch('json.json')
+  var user = await data.json()
+
+
+}
+  jsonAdd()
+let arry_Staff = [{
+  Role: "",
   image: "",
   Email: "",
   Telephone: "",
   Experiences: [],
-};
+}];
+
+let test=[];
 
 const form_Modal = document.getElementById("form_Modal");
 
@@ -63,21 +72,42 @@ document.getElementById("Experiences").addEventListener("input", () => {
   }
 });
 
+const profile = document.getElementById("profile");
+
 function ajouterInStaff() {
-  const profile = document.getElementById("profile");
-  arry_Staff.name = form_Modal[0].value;
-  arry_Staff.Role = form_Modal[1].value;
-  arry_Staff.image = form_Modal[2].value;
-  arry_Staff.Email = form_Modal[3].value;
-  arry_Staff.Telephone = form_Modal[4].value;
-  arry_Staff.Experiences = form_Modal[6].value;
-  profile.innerHTML += `
+  test.name = form_Modal[0].value;
+  test.Role = form_Modal[1].value;
+  test.image = form_Modal[2].value;
+  test.Email = form_Modal[3].value;
+  test.Telephone = form_Modal[4].value;
+  arry_Staff.Experiences.push(form_Modal[6].value);
+  test.push(arry_Staff);
+  form_Modal[0].value=''
+  form_Modal[1].value=''
+  form_Modal[2].value=''
+  form_Modal[3].value=''
+  form_Modal[4].value=''
+  form_Modal[6].value=''
+
+  form_Modal[0].style.border = ""
+  form_Modal[1].style.border = ""
+  form_Modal[2].style.border = ""
+  form_Modal[3].style.border = ""
+  form_Modal[4].style.border = ""
+  form_Modal[6].style.border = ""
+  
+}
+function RenderInStaff(){ 
+  profile.innerHTML ='';
+ test.forEach((Element)=>{
+  
+    profile.innerHTML += `
                         <div class="card profile-card p-3" id="profile">
                         <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
                         <div class=" justify-content-center">
-                        <img src="${arry_Staff.image}"
+                        <img src="${Element.image}"
                         class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${arry_Staff.name}</h6>
+                        <h6 class="name">${Element.name}</h6>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
                         details
                         </button>
@@ -85,7 +115,7 @@ function ajouterInStaff() {
                         </div>
                         </div>
                         `;
-  
+  })
 }
 
 function formvalidation() {
@@ -173,14 +203,69 @@ butSavechanges.addEventListener("click", () => {
   console.log(formvalidation());
   if (!formvalidation()) {
     ajouterInStaff();
-    modal.hide();
+    
     console.log(10);
+    Experiences_ajouter()
+    RenderInStaff()
+    modal.hide();
   }
 });
 
+
+const Experiences_dynamique_ajouter = document.getElementById("Experiences_dynamique");
 button_Experiences.addEventListener('click',button_Experiences_dynamique)
 function button_Experiences_dynamique(){
-console.log(10);
-
+  console.log(10);
+  
+  Experiences_dynamique_ajouter.innerHTML+=
+  `
+  <label for=" " class="col-form-label">Expériences</label>
+  <input type="text" class="form-control dynamique " id="dynamique" value="" required placeholder="Expériences">
+  <span id="" style="color: red;"></span>
+  `
+  
 }
+
+
+function Experiences_ajouter(){
+  let b=document.querySelectorAll('.dynamique') 
+  b.forEach((Element)=>{
+    arry_Staff.Experiences.push(Element.value);
+    
+  })
+  
+}
+
+const zone_conference = document.getElementById("zone_conference");
+// const zone_serveurs = document.getElementById("zone_serveurs");
+// const zone_securite = document.getElementById("zone_securite");
+// const zone_Reception = document.getElementById("zone_Reception");
+// const zone_personnel = document.getElementById("zone_personnel");
+// const zone_archives = document.getElementById("zone_archives");
+let modal_zone=document.getElementById('modal_zone');
+zone_conference.addEventListener('click',()=>{
+  modal_zone.innerHTML='';
+  console.log(1555555);
+ test.forEach((Element)=>{
+  
+  
+  
+    modal_zone.innerHTML += `
+                        <div class="card profile-card p-3" id="profile">
+                        <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
+                        <div class=" justify-content-center">
+                        <img src="${Element.image}"
+                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                        <h6 class="name">${Element.name}</h6>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
+                        details
+                        </button>
+                        </div>
+                        </div>
+                        </div>
+                        `;
+  })
+
+
+})
 
