@@ -189,12 +189,12 @@
                         <label for="validationCustom01" class="form-label">name</label>
                         <input type="text" class="form-control" id="validation_name" required
                             placeholder="name">
-                            <span style="color: red;"></span>
+                            <span id="Nom-error-zone" style="color: red;"></span>
                         <!-- Rôle -->
                         <div class="mb-3">
 
                             <label for="disabledSelect" class="form-label" >Rôle</label>
-                            <select id="validation_Rôle" class="form-select" >
+                            <select id="validation_Role" class="form-select" >
                                 <option></option>
                                 <option>réception</option>
                                 <option>Techniciens IT</option>
@@ -203,7 +203,7 @@
                                 <option>Nettoyage </option>
                                 <option>Autres</option>
                             </select>
-                            <span id="tele-error-zone" style="color: red;"> </span>
+                            <span id="Role-error-zone" style="color: red;"> </span>
 
 
                         </div>
@@ -212,31 +212,31 @@
                             <label for="tel" class="form-label">image</label>
                             <input type="url" class="form-control" id="validation_image" name="tel"
                                 placeholder="https://example.com/users/">
-                            <span id="tele-error-zone" style="color: red;"> </span>
+                            <span id="image-error-zone" style="color: red;"> </span>
 
                         </div>
                         <!-- Email -->
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">Email:</label>
                             <input type="email" class="form-control" id="recipient_Email" placeholder="name@example.com">
-                            <span id="tele-error-zone" style="color: red;"> </span>
+                            <span id="Email-error-zone" style="color: red;"> </span>
 
                         </div>
                         <!-- Téléphone -->
                         <div class="mb-3">
                             <label for="tel" class="col-form-label">Téléphone</label>
                             <input type="tel" class="form-control" id="validation_tel" placeholder="0612345678">
-                            <span id="tele-error-zone" style="color: red;"> </span>
+                            <span id="Telephone-error-zone" style="color: red;"> </span>
                         </div>
                         <!-- Expériences professionnelles (formulaire dynamique permettant d’ajouter plusieurs expériences). -->
                         <div class="mb-3">
                             <h5 class="modal-title" id="exampleModalLabel">Expériences professionnelles:</h5>
 
                             <label for="recipient-name" class="col-form-label">Expériences</label>
-                            <button type="button" class="btn btn-warning mr-md-3 mb-2 mb-md-0">+</button>
-                            <input type="text" class="form-control" id="Expériences" value="" required
+                            <button type="button_Experiences" class="btn btn-warning mr-md-3 mb-2 mb-md-0" id="button_Experiences">+</button>
+                            <input type="text" class="form-control" id="Experiences" value="" required
                                 placeholder="Expériences">
-                            <span id="tele-error-zone" style="color: red;"> </span>
+                            <span id="Experiences-error-zone" style="color: red;"></span>
                                 
 
 
@@ -246,7 +246,7 @@
                 </div>
                 <div class="modal-footer" id="div-Save">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="btn_Save_changes" style="display: block;" data-bs-dismiss="modal">Save
+                    <button type="button" class="btn btn-primary" id="btn_Save_changes" >Save
                         changes</button>
                 </div>
             </div>
