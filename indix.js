@@ -1,17 +1,28 @@
 async function jsonAdd() {
   let data= await fetch('json.json')
   var user = await data.json()
+arry_Staff=user
 
+user.forEach((Element)=>{
+ profile.innerHTML += `
+                        <div class="card profile-card p-3" id="profile">
+                        <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
+                        <div class=" justify-content-center">
+                        <img src="${Element.image}"
+                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                        <h6 class="name">${Element.name}</h6>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
+                        details
+                        </button>
+                        </div>
+                        </div>
+                        </div>
+                        `;
+})
 
 }
   jsonAdd()
-let arry_Staff = [{
-  Role: "",
-  image: "",
-  Email: "",
-  Telephone: "",
-  Experiences: [],
-}];
+let arry_Staff;
 
 let test=[];
 
@@ -245,11 +256,8 @@ const zone_conference = document.getElementById("zone_conference");
 let modal_zone=document.getElementById('modal_zone');
 zone_conference.addEventListener('click',()=>{
   modal_zone.innerHTML='';
-  console.log(1555555);
- test.forEach((Element)=>{
-  
-  
-  
+
+ arry_Staff.forEach((Element)=>{
     modal_zone.innerHTML += `
                         <div class="card profile-card p-3" id="profile">
                         <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
