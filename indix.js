@@ -23,6 +23,13 @@ async function jsonAdd() {
 }
 jsonAdd();
 let arry_Staff;
+let arry_Staff_conference=[];
+let arry_Staff_serveurs=[];
+let arry_Staff_securite=[];
+let arry_Staff_Reception=[];
+let arry_Staff_personnel=[];
+let arry_Staff_archives=[];
+
 const form_Modal = document.getElementById("form_Modal");
 
 // <!-- regex -->
@@ -246,11 +253,13 @@ const zone_conference = document
   .getElementById("zone_conference")
   .addEventListener("click", () => {
     modal_zone("conference");
+
+
   });
 const zone_serveurs = document
   .getElementById("zone_serveurs")
   .addEventListener("click", () => {
-    modal_zone("securite");
+    modal_zone("serveurs");
   });
 const zone_securite = document
   .getElementById("zone_securite")
@@ -265,7 +274,7 @@ const zone_Reception = document
 const zone_personnel = document
   .getElementById("zone_personnel")
   .addEventListener("click", () => {
-    modal_zone("ersonnel");
+    modal_zone("personnel");
   });
 const zone_archives = document
   .getElementById("zone_archives")
@@ -279,7 +288,7 @@ function modal_zone(zone) {
   modal_zone_conference.innerHTML = "";
   arry_Staff.forEach((Element, i) => {
     modal_zone_conference.innerHTML += `
-                        <div class="card profile-card p-3" id="profile">
+                        <div class="M profile-card p-3" id="profile">
                         <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
                         <div class=" justify-content-center">
                         <img src="${Element.image}"
@@ -287,7 +296,7 @@ function modal_zone(zone) {
                         <h6 class="name">${Element.name}</h6>
                         <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
                         details
-                        </button><button onclick="modalZoneAdd(${i},'${zone}')" id="modal_zone_add" type="button" class="btn btn-success modal_zone_add " data-bs-toggle="." data-bs-target=".">
+                        </button><button data-bs-dismiss="modal" onclick="modalZoneAdd(${i},'${zone}')" id="modal_zone_add" type="button" class="btn btn-success modal_zone_add " data-bs-toggle="." data-bs-target=".">
                         add
                         </button>
                         <span style="display: none;"></span>
@@ -309,19 +318,18 @@ function modalZoneAdd(indix, zone) {
   switch (zone) {
     case "conference": {
       div_zone_conference.innerHTML += `
-                        
-                        
                         <div class=" d-flex justify-content-center">
                         <img src="${arry_Staff[indix].image}"
                         class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
                         <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                        <button type="button" onclick="modalZoneClose('conference')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
                         X
                         <span style="display: none;"></span>
                         </div>
                         
                         
                         `;
+      break;
     }
     case "serveurs": {
       div_zone_serveurs.innerHTML += `
@@ -331,13 +339,14 @@ function modalZoneAdd(indix, zone) {
                         <img src="${arry_Staff[indix].image}"
                         class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
                         <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                        <button type="button" onclick="modalZoneClose('serveurs')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
                         X
                         <span style="display: none;"></span>
                         </div>
                         
                         
                         `;
+      break;
     }
     case "securite": {
       div_zone_securite.innerHTML += `
@@ -347,13 +356,14 @@ function modalZoneAdd(indix, zone) {
                         <img src="${arry_Staff[indix].image}"
                         class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
                         <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                        <button type="button" onclick="modalZoneClose('securite')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
                         X
                         <span style="display: none;"></span>
                         </div>
                         
                         
                         `;
+      break;
     }
     case "Reception": {
       div_zone_Reception.innerHTML += `
@@ -363,13 +373,14 @@ function modalZoneAdd(indix, zone) {
                         <img src="${arry_Staff[indix].image}"
                         class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
                         <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                        <button type="button" onclick="modalZoneClose('Reception')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
                         X
                         <span style="display: none;"></span>
                         </div>
                         
                         
                         `;
+      break;
     }
     case "personnel": {
       div_zone_personnel.innerHTML += `
@@ -379,29 +390,109 @@ function modalZoneAdd(indix, zone) {
                         <img src="${arry_Staff[indix].image}"
                         class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
                         <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                        <button type="button" onclick="modalZoneClose('personnel')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
                         X
                         <span style="display: none;"></span>
                         </div>
                         
                         
                         `;
+      break;
     }
     case "archives": {
-      div_zone_archives.innerHTML += `
-                        
-                        
-                        <div class=" d-flex justify-content-center">
-                        <img src="${arry_Staff[indix].image}"
-                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
-                        X
-                        <span style="display: none;"></span>
-                        </div>
-                        
-                        
-                        `;
+      
+      div_zone_archives.innerHTML += ` 
+      
+      
+      <div class=" d-flex justify-content-center">
+      <img src="${arry_Staff[indix].image}"
+      class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+      <h6 class="name">${arry_Staff[indix].name}</h6>
+      <button type="button" onclick="modalZoneClose('archives')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+      X
+      <span style="display: none;"></span>
+      </div>
+      
+      
+      `;
+      arry_Staff_archives.push(arry_Staff[0]) 
+      arry_Staff.splice(indix,1)
+       RenderInStaff()
+      break;
     }
   }
+}
+function  RenderInStaff_dynamic(arry){
+
+}
+function modalZoneClose(zone) {
+  if (zone == "conference") {
+  }
+  if (zone == "serveurs") {
+  }
+  if (zone == "securite") {
+  }
+  if (zone == "Reception") {
+  }
+  if (zone == "personnel") {
+  }
+  if (zone == "archives") {
+  }
+}
+const Search_profile = document.getElementById("Search_profile");
+Search_profile.addEventListener("input", () => {
+  let HTML=''
+  if(Search_profile.value==''){
+    arry_Staff.forEach((Element)=>{
+     HTML+= `
+                        <div class="card profile-card p-3" id="profile">
+                        <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
+                        <div class=" justify-content-center">
+                        <img src="${Element.image}"
+                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                        <h6 class="name">${Element.name}</h6>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
+                        details
+                        </button>
+                        </div>
+                        </div>
+                        </div>
+                        `;
+  })
+
+profile.innerHTML=HTML; 
+  }
+  
+  Search_profile_vaeli(Search_profile.value).forEach((Element)=>{
+     HTML+= `
+                        <div class="card profile-card p-3" id="profile">
+                        <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
+                        <div class=" justify-content-center">
+                        <img src="${Element.image}"
+                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                        <h6 class="name">${Element.name}</h6>
+                        <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
+                        details
+                        </button>
+                        </div>
+                        </div>
+                        </div>
+                        `;
+  })
+
+profile.innerHTML=HTML; 
+  
+
+});
+
+function Search_profile_vaeli(Search_vaeli) {
+  let Search_add=[];
+  arry_Staff.forEach((Element) => {
+    Element.Experiences.forEach((elme) => {
+      if (elme == Search_vaeli) {
+        Search_add.push(Element);
+      }
+    });
+  });
+  return Search_add;
 }
