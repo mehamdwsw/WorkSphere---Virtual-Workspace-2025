@@ -23,12 +23,12 @@ async function jsonAdd() {
 }
 jsonAdd();
 let arry_Staff;
-let arry_Staff_conference=[];
-let arry_Staff_serveurs=[];
-let arry_Staff_securite=[];
-let arry_Staff_Reception=[];
-let arry_Staff_personnel=[];
-let arry_Staff_archives=[];
+let arry_Staff_conference = [];
+let arry_Staff_serveurs = [];
+let arry_Staff_securite = [];
+let arry_Staff_Reception = [];
+let arry_Staff_personnel = [];
+let arry_Staff_archives = [];
 
 const form_Modal = document.getElementById("form_Modal");
 
@@ -60,6 +60,9 @@ document.getElementById("validation_Role").addEventListener("click", () => {
 document.getElementById("validation_image").addEventListener("input", () => {
   if (imageUrlRegex.test(form_Modal[2].value)) {
     form_Modal[2].style.border = "thick solid #0ee90aff";
+    document.getElementById("image_div").innerHTML = `
+    <img src="${form_Modal[2].value}" class=" profile-image rounded-circle" style="width: 10vh; height: 10vh;" alt="">
+    `;
   } else {
     form_Modal[2].style.border = "thick solid #ee0b0bff";
   }
@@ -249,38 +252,24 @@ function Experiences_ajouter() {
   });
 }
 
-const zone_conference = document
-  .getElementById("zone_conference")
-  .addEventListener("click", () => {
-    modal_zone("conference");
-
-
-  });
-const zone_serveurs = document
-  .getElementById("zone_serveurs")
-  .addEventListener("click", () => {
-    modal_zone("serveurs");
-  });
-const zone_securite = document
-  .getElementById("zone_securite")
-  .addEventListener("click", () => {
-    modal_zone("securite");
-  });
-const zone_Reception = document
-  .getElementById("zone_Reception")
-  .addEventListener("click", () => {
-    modal_zone("Reception");
-  });
-const zone_personnel = document
-  .getElementById("zone_personnel")
-  .addEventListener("click", () => {
-    modal_zone("personnel");
-  });
-const zone_archives = document
-  .getElementById("zone_archives")
-  .addEventListener("click", () => {
-    modal_zone("archives");
-  });
+document.getElementById("zone_conference").addEventListener("click", () => {
+  modal_zone("conference");
+});
+document.getElementById("zone_serveurs").addEventListener("click", () => {
+  modal_zone("serveurs");
+});
+document.getElementById("zone_securite").addEventListener("click", () => {
+  modal_zone("securite");
+});
+document.getElementById("zone_Reception").addEventListener("click", () => {
+  modal_zone("Reception");
+});
+document.getElementById("zone_personnel").addEventListener("click", () => {
+  modal_zone("personnel");
+});
+document.getElementById("zone_archives").addEventListener("click", () => {
+  modal_zone("archives");
+});
 
 let modal_zone_conference = document.getElementById("modal_zone");
 
@@ -299,7 +288,7 @@ function modal_zone(zone) {
                         </button><button data-bs-dismiss="modal" onclick="modalZoneAdd(${i},'${zone}')" id="modal_zone_add" type="button" class="btn btn-success modal_zone_add " data-bs-toggle="." data-bs-target=".">
                         add
                         </button>
-                        <span style="display: none;"></span>
+                        
                         </div>
                         </div>
                         </div>
@@ -308,143 +297,221 @@ function modal_zone(zone) {
 }
 const modal_zone_add = document.getElementById("modal_zone_add");
 // modal_zone_add.addEventListener('click',add_Modal_Zone)
-function modalZoneAdd(indix, zone) {
-  const div_zone_conference = document.getElementById("div_zone_conference");
-  const div_zone_serveurs = document.getElementById("div_zone_serveurs");
-  const div_zone_securite = document.getElementById("div_zone_securite");
-  const div_zone_Reception = document.getElementById("div_zone_Reception");
-  const div_zone_personnel = document.getElementById("div_zone_personnel");
-  const div_zone_archives = document.getElementById("div_zone_archives");
+const div_zone_conference = document.getElementById("div_zone_conference");
+const div_zone_serveurs = document.getElementById("div_zone_serveurs");
+const div_zone_securite = document.getElementById("div_zone_securite");
+const div_zone_Reception = document.getElementById("div_zone_Reception");
+const div_zone_personnel = document.getElementById("div_zone_personnel");
+const div_zone_archives = document.getElementById("div_zone_archives");
+function modalZoneAdd(indi, zone) {
   switch (zone) {
     case "conference": {
-      div_zone_conference.innerHTML += `
-                        <div class=" d-flex justify-content-center">
-                        <img src="${arry_Staff[indix].image}"
-                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" onclick="modalZoneClose('conference')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
-                        X
-                        <span style="display: none;"></span>
-                        </div>
-                        
-                        
-                        `;
+      arry_Staff_conference.push(arry_Staff[indi]);
+      arry_Staff.splice(indi, 1);
+      RenderInStaff();
+      RenderInZone_dynamic("conference");
       break;
     }
     case "serveurs": {
-      div_zone_serveurs.innerHTML += `
-                        
-                        
-                        <div class=" d-flex justify-content-center">
-                        <img src="${arry_Staff[indix].image}"
-                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" onclick="modalZoneClose('serveurs')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
-                        X
-                        <span style="display: none;"></span>
-                        </div>
-                        
-                        
-                        `;
+      arry_Staff_serveurs.push(arry_Staff[indi]);
+      arry_Staff.splice(indi, 1);
+      RenderInStaff();
+      RenderInZone_dynamic("serveurs");
       break;
     }
     case "securite": {
-      div_zone_securite.innerHTML += `
-                        
-                        
-                        <div class=" d-flex justify-content-center">
-                        <img src="${arry_Staff[indix].image}"
-                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" onclick="modalZoneClose('securite')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
-                        X
-                        <span style="display: none;"></span>
-                        </div>
-                        
-                        
-                        `;
+      arry_Staff_securite.push(arry_Staff[indi]);
+      arry_Staff.splice(indi, 1);
+      RenderInStaff();
+      RenderInZone_dynamic("securite");
       break;
     }
     case "Reception": {
-      div_zone_Reception.innerHTML += `
-                        
-                        
-                        <div class=" d-flex justify-content-center">
-                        <img src="${arry_Staff[indix].image}"
-                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" onclick="modalZoneClose('Reception')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
-                        X
-                        <span style="display: none;"></span>
-                        </div>
-                        
-                        
-                        `;
+      arry_Staff_Reception.push(arry_Staff[indi]);
+      arry_Staff.splice(indi, 1);
+      RenderInStaff();
+      RenderInZone_dynamic("Reception");
+
       break;
     }
     case "personnel": {
-      div_zone_personnel.innerHTML += `
-                        
-                        
-                        <div class=" d-flex justify-content-center">
-                        <img src="${arry_Staff[indix].image}"
-                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${arry_Staff[indix].name}</h6>
-                        <button type="button" onclick="modalZoneClose('personnel')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
-                        X
-                        <span style="display: none;"></span>
-                        </div>
-                        
-                        
-                        `;
+      arry_Staff_personnel.push(arry_Staff[indi]);
+      arry_Staff.splice(indi, 1);
+      RenderInStaff();
+      RenderInZone_dynamic("personnel");
       break;
     }
     case "archives": {
-      
-      div_zone_archives.innerHTML += ` 
-      
-      
-      <div class=" d-flex justify-content-center">
-      <img src="${arry_Staff[indix].image}"
-      class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-      <h6 class="name">${arry_Staff[indix].name}</h6>
-      <button type="button" onclick="modalZoneClose('archives')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
-      X
-      <span style="display: none;"></span>
-      </div>
-      
-      
-      `;
-      arry_Staff_archives.push(arry_Staff[0]) 
-      arry_Staff.splice(indix,1)
-       RenderInStaff()
+      arry_Staff_archives.push(arry_Staff[indi]);
+      arry_Staff.splice(indi, 1);
+      RenderInStaff();
+      RenderInZone_dynamic("archives");
       break;
     }
   }
 }
-function  RenderInStaff_dynamic(arry){
 
-}
-function modalZoneClose(zone) {
+function RenderInZone_dynamic(zone) {
   if (zone == "conference") {
+    div_zone_conference.innerHTML = "";
+    arry_Staff_conference.forEach((Element, indix) => {
+      div_zone_conference.innerHTML += ` 
+                    <div class=" d-flex justify-content-center">
+                    <img src="${Element.image}"
+                    class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                    <h6 class="name">${Element.name}</h6>
+                    <button type="button" onclick="modalZoneClose('conference','${Element.Email}')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                    X
+                    <span style="display: none;"></span>
+                    </div>
+                    `;
+    });
   }
   if (zone == "serveurs") {
+    div_zone_serveurs.innerHTML = "";
+    arry_Staff_serveurs.forEach((Element, indix) => {
+      div_zone_serveurs.innerHTML += ` 
+                    <div class=" d-flex justify-content-center">
+                    <img src="${Element.image}"
+                    class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                    <h6 class="name">${Element.name}</h6>
+                    <button type="button" onclick="modalZoneClose('serveurs','${Element.Email}')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                    X
+                    <span style="display: none;"></span>
+                    </div>
+                    `;
+    });
   }
   if (zone == "securite") {
+    div_zone_securite.innerHTML = "";
+    arry_Staff_securite.forEach((Element, indix) => {
+      div_zone_securite.innerHTML += ` 
+                    <div class=" d-flex justify-content-center">
+                    <img src="${Element.image}"
+                    class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                    <h6 class="name">${Element.name}</h6>
+                    <button type="button" onclick="modalZoneClose('securite','${Element.Email}')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                    X
+                    <span style="display: none;"></span>
+                    </div>
+                    `;
+    });
   }
   if (zone == "Reception") {
+    div_zone_Reception.innerHTML = "";
+    arry_Staff_Reception.forEach((Element, indix) => {
+      div_zone_Reception.innerHTML += ` 
+                    <div class=" d-flex justify-content-center">
+                    <img src="${Element.image}"
+                    class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                    <h6 class="name">${Element.name}</h6>
+                    <button type="button" onclick="modalZoneClose('Reception','${Element.Email}')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                    X
+                    <span style="display: none;"></span>
+                    </div>
+                    `;
+    });
   }
   if (zone == "personnel") {
+    div_zone_personnel.innerHTML = "";
+    arry_Staff_personnel.forEach((Element, indix) => {
+      div_zone_personnel.innerHTML += ` 
+                    <div class=" d-flex justify-content-center">
+                    <img src="${Element.image}"
+                    class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                    <h6 class="name">${Element.name}</h6>
+                    <button type="button" onclick="modalZoneClose('personnel','${Element.Email}')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                    X
+                    <span style="display: none;"></span>
+                    </div>
+                    `;
+    });
   }
   if (zone == "archives") {
+    div_zone_archives.innerHTML = "";
+    arry_Staff_archives.forEach((Element, indix) => {
+      div_zone_archives.innerHTML += ` 
+                    <div class=" d-flex justify-content-center">
+                    <img src="${Element.image}"
+                    class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
+                    <h6 class="name">${Element.name}</h6>
+                    <button type="button" onclick="modalZoneClose('archives','${Element.Email}')" class=" btn btn btn-danger" data-bs-toggle="." data-bs-target=".">
+                    X
+                    <span style="display: none;"></span>
+                    </div>
+                    `;
+    });
+  }
+}
+
+function modalZoneClose(zone, Email) {
+  if (zone == "conference") {
+    arry_Staff_conference.forEach((Element, i) => {
+      if (Element.Email === Email) {
+        arry_Staff.push(Element);
+        arry_Staff_conference.splice(i, 1);
+      }
+    });
+    RenderInStaff();
+    RenderInZone_dynamic("conference");
+  }
+  if (zone == "serveurs") {
+    arry_Staff_serveurs.forEach((Element, i) => {
+      if (Element.Email === Email) {
+        arry_Staff.push(Element);
+        arry_Staff_serveurs.splice(i, 1);
+      }
+    });
+    RenderInStaff();
+    RenderInZone_dynamic("serveurs");
+  }
+  if (zone == "securite") {
+    arry_Staff_securite.forEach((Element, i) => {
+      if (Element.Email === Email) {
+        arry_Staff.push(Element);
+        arry_Staff_securite.splice(i, 1);
+      }
+    });
+    RenderInStaff();
+    RenderInZone_dynamic("securite");
+  }
+  if (zone == "Reception") {
+    arry_Staff_Reception.forEach((Element, i) => {
+      if (Element.Email === Email) {
+        arry_Staff.push(Element);
+        arry_Staff_Reception.splice(i, 1);
+      }
+    });
+    RenderInStaff();
+    RenderInZone_dynamic("Reception");
+  }
+  if (zone == "personnel") {
+    arry_Staff_personnel.forEach((Element, i) => {
+      if (Element.Email === Email) {
+        arry_Staff.push(Element);
+        arry_Staff_personnel.splice(i, 1);
+      }
+    });
+    RenderInStaff();
+    RenderInZone_dynamic("personnel");
+  }
+  if (zone == "archives") {
+    arry_Staff_archives.forEach((Element, i) => {
+      if (Element.Email === Email) {
+        arry_Staff.push(Element);
+        arry_Staff_archives.splice(i, 1);
+      }
+    });
+    RenderInStaff();
+    RenderInZone_dynamic("archives");
   }
 }
 const Search_profile = document.getElementById("Search_profile");
 Search_profile.addEventListener("input", () => {
-  let HTML=''
-  if(Search_profile.value==''){
-    arry_Staff.forEach((Element)=>{
-     HTML+= `
+  let HTML = "";
+  if (Search_profile.value == "") {
+    arry_Staff.forEach((Element) => {
+      HTML += `
                         <div class="card profile-card p-3" id="profile">
                         <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
                         <div class=" justify-content-center">
@@ -458,13 +525,13 @@ Search_profile.addEventListener("input", () => {
                         </div>
                         </div>
                         `;
-  })
+    });
 
-profile.innerHTML=HTML; 
+    profile.innerHTML = HTML;
   }
-  
-  Search_profile_vaeli(Search_profile.value).forEach((Element)=>{
-     HTML+= `
+
+  Search_profile_vaeli(Search_profile.value).forEach((Element) => {
+    HTML += `
                         <div class="card profile-card p-3" id="profile">
                         <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
                         <div class=" justify-content-center">
@@ -478,15 +545,13 @@ profile.innerHTML=HTML;
                         </div>
                         </div>
                         `;
-  })
+  });
 
-profile.innerHTML=HTML; 
-  
-
+  profile.innerHTML = HTML;
 });
 
 function Search_profile_vaeli(Search_vaeli) {
-  let Search_add=[];
+  let Search_add = [];
   arry_Staff.forEach((Element) => {
     Element.Experiences.forEach((elme) => {
       if (elme == Search_vaeli) {
