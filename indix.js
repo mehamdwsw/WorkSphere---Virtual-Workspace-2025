@@ -366,7 +366,7 @@ function modalZoneAdd(indi, zone) {
         check_arr()
       } else {
         alert_zone.style.display = "block";
-        setTimeout(display_none_alert_zone, 1000);
+        setTimeout(display_none_alert_zone, 4000);
       }
 
       break;
@@ -384,7 +384,7 @@ function modalZoneAdd(indi, zone) {
         check_arr()
       } else {
         alert_zone.style.display = "block";
-        setTimeout(display_none_alert_zone, 1000);
+        setTimeout(display_none_alert_zone, 4000);
       }
 
       break;
@@ -402,7 +402,7 @@ function modalZoneAdd(indi, zone) {
         check_arr()
       } else {
         alert_zone.style.display = "block";
-        setTimeout(display_none_alert_zone, 1000);
+        setTimeout(display_none_alert_zone, 4000);
       }
 
       break;
@@ -420,7 +420,7 @@ function modalZoneAdd(indi, zone) {
         check_arr()
       } else {
         alert_zone.style.display = "block";
-        setTimeout(display_none_alert_zone, 1000);
+        setTimeout(display_none_alert_zone, 4000);
       }
 
       break;
@@ -441,7 +441,7 @@ function modalZoneAdd(indi, zone) {
         check_arr()
       } else {
         alert_zone.style.display = "block";
-        setTimeout(display_none_alert_zone, 1000);
+        setTimeout(display_none_alert_zone, 4000);
       }
 
       break;
@@ -461,7 +461,7 @@ function modalZoneAdd(indi, zone) {
         check_arr()
       } else {
         alert_zone.style.display = "block";
-        setTimeout(display_none_alert_zone, 1000);
+        setTimeout(display_none_alert_zone, 4000);
       }
       break;
     }
