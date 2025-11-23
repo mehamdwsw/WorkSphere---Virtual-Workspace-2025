@@ -1,6 +1,6 @@
 [{
   "name": "mohamed",
-  "Role": "Agents de sécurité",
+  "Role": "Manager",
   "image": "https://intranet.youcode.ma/storage/users/profile/thumbnail/1884-1760996517.png",
   "Email": "mehamdwsw@gmail.com",
   "Telephone": "0615151515",
@@ -8,7 +8,7 @@
 },
 {
   "name": "dfedfef ",
-  "Role": "Manager",
+  "Role": "Agents de sécurité",
   "image": "https://images.unsplash.com/photo-1607006142194-4b53971902e4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.png",
   "Email": "mehamdManager@gmail.com",
   "Telephone": "0606061235",
@@ -16,7 +16,7 @@
 },
 {
   "name": "ggggggggg ",
-  "Role": "Manager",
+  "Role": "Techniciens IT",
   "image": "https://images.unsplash.com/photo-1607006142194-4b53971902e4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.png",
   "Email": "mehrgfg@gmail.com",
   "Telephone": "0606061235",
@@ -24,9 +24,25 @@
 },
 {
   "name": "hhhhhhhhhhh ",
-  "Role": "Manager",
+  "Role": "réception",
   "image": "https://images.unsplash.com/photo-1607006142194-4b53971902e4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.png",
   "Email": "meffffff@gmail.com",
+  "Telephone": "0606061235",
+  "Experiences": ["html","javascript"]
+},
+{
+  "name": "Nettoyage ",
+  "Role": "Nettoyage",
+  "image": "https://images.unsplash.com/photo-1607006142194-4b53971902e4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.png",
+  "Email": "dfdsfsdfff@gmail.com",
+  "Telephone": "0606061235",
+  "Experiences": ["html","javascript"]
+},
+{
+  "name": "ddfr ",
+  "Role": "Autres",
+  "image": "https://images.unsplash.com/photo-1607006142194-4b53971902e4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D.png",
+  "Email": "gesdf@gmail.com",
   "Telephone": "0606061235",
   "Experiences": ["html","javascript"]
 }

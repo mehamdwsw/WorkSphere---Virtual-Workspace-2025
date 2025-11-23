@@ -4,23 +4,9 @@ async function jsonAdd() {
   var user = await data.json();
   arry_Staff = user;
 
-  user.forEach((Element) => {
-    profile.innerHTML += `
-    <div class="card profile-card p-3" id="profile">
-    <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
-    <div class=" justify-content-center">
-    <img src="${Element.image}"
-    class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${Element.name}</h6>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
-                        details
-                        </button>
-                        </div>
-                        </div>
-                        </div>
-                        `;
-  });
+  RenderInStaff();
 }
+
 jsonAdd();
 let arry_Staff;
 let arry_Staff_conference = [];
@@ -40,7 +26,7 @@ const phoneNumberRegex = /^\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})$/;
 // <!-- regex end -->
 
 const exampleModal = document.getElementById("exampleModal");
-
+const alert_zone = document.getElementById("alert_zone");
 const ajouter = document.getElementById("ajouter");
 
 document.getElementById("validation_name").addEventListener("input", () => {
@@ -91,7 +77,7 @@ document.getElementById("Experiences").addEventListener("input", () => {
 
 function ajouterInStaff() {
   let attend = {
-    Experiences: [],
+    Experiences: Experiences_ajouter(),
   };
   attend.name = form_Modal[0].value;
   attend.Role = form_Modal[1].value;
@@ -101,13 +87,8 @@ function ajouterInStaff() {
   attend.Experiences.push(form_Modal[6].value);
 
   arry_Staff.push(attend);
-  form_Modal[0].value = "";
-  form_Modal[1].value = "";
-  form_Modal[2].value = "";
-  form_Modal[3].value = "";
-  form_Modal[4].value = "";
-  form_Modal[6].value = "";
 
+  not_value_form();
   form_Modal[0].style.border = "";
   form_Modal[1].style.border = "";
   form_Modal[2].style.border = "";
@@ -115,9 +96,18 @@ function ajouterInStaff() {
   form_Modal[4].style.border = "";
   form_Modal[6].style.border = "";
 }
+function not_value_form() {
+  form_Modal[0].value = "";
+  form_Modal[1].value = "";
+  form_Modal[2].value = "";
+  form_Modal[3].value = "";
+  form_Modal[4].value = "";
+  form_Modal[6].value = "";
+  Experiences_dynamique_ajouter.innerHTML = "";
+}
 function RenderInStaff() {
   profile.innerHTML = "";
-  arry_Staff.forEach((Element) => {
+  arry_Staff.forEach((Element, i) => {
     profile.innerHTML += `
                         <div class="card profile-card p-3" id="profile">
                         <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
@@ -125,14 +115,69 @@ function RenderInStaff() {
                         <img src="${Element.image}"
                         class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
                         <h6 class="name">${Element.name}</h6>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
+                        <button type="button" onclick="modalAffichageDetails(${i})" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#examp">
                         details
+                        </button>
+                        <button type="button" onclick="modalAffichageEdit(${i})" class="btn btn-secondary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                        edit
                         </button>
                         </div>
                         </div>
                         </div>
                         `;
   });
+}
+function modalAffichageEdit(i) {
+  form_Modal[0].value = arry_Staff[i].name;
+  form_Modal[1].value = arry_Staff[i].Role;
+  form_Modal[2].value = arry_Staff[i].image;
+  form_Modal[3].value = arry_Staff[i].Email;
+  form_Modal[4].value = arry_Staff[i].Telephone;
+  form_Modal[6].value = arry_Staff[i].Experiences[0];
+}
+function modalAffichageDetails(i) {
+  modal_zone_conference.innerHTML = `
+                        <div class="tab-pane fade active show" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
+                <h5 class="mb-3">About</h5>
+                <div class="lead mb-3"><img src="${arry_Staff[i].image}"
+                                class=" profile-image rounded-circle" style="width: 15vh; height: 15vh;"></div>
+                <h5 class="mb-3">Profile</h5>
+                <div class="row g-0">
+                  <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                    <div class="p-2">Name</div>
+                  </div>
+                  <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                    <div class="p-2">${arry_Staff[i].name}</div>
+                  </div>
+                  <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                    <div class="p-2">Role</div>
+                  </div>
+                  <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                    <div class="p-2">${arry_Staff[i].Role}</div>
+                  </div>
+                  <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                    <div class="p-2">Email</div>
+                  </div>
+                  <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                    <div class="p-2">${arry_Staff[i].Email}</div>
+                  </div>
+                  <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                    <div class="p-2">Telephone</div>
+                  </div>
+                  <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                    <div class="p-2">${arry_Staff[i].Telephone}</div>
+                  </div>
+                  <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                    <div class="p-2">Experiences</div>
+                  </div>
+                  <div class="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                    <div class="p-2">${arry_Staff[i].Experiences}</div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+                        `;
 }
 
 function formvalidation() {
@@ -221,9 +266,6 @@ butSavechanges.addEventListener("click", () => {
   console.log(formvalidation());
   if (!formvalidation()) {
     ajouterInStaff();
-
-    console.log(10);
-    Experiences_ajouter();
     RenderInStaff();
     modal.hide();
   }
@@ -234,7 +276,7 @@ const Experiences_dynamique_ajouter = document.getElementById(
 );
 button_Experiences.addEventListener("click", button_Experiences_dynamique);
 function button_Experiences_dynamique() {
-  console.log(10);
+  console.log(222);
 
   Experiences_dynamique_ajouter.innerHTML += `
   <label for=" " class="col-form-label">Expériences</label>
@@ -245,11 +287,11 @@ function button_Experiences_dynamique() {
 
 function Experiences_ajouter() {
   let b = document.querySelectorAll(".dynamique");
+  let arr_Experiences = [];
   b.forEach((Element) => {
-    console.log(Element.value);
-
-    arry_Staff.Experiences.push(Element.value);
+    arr_Experiences.push(Element.value);
   });
+  return arr_Experiences;
 }
 
 document.getElementById("zone_conference").addEventListener("click", () => {
@@ -296,61 +338,205 @@ function modal_zone(zone) {
   });
 }
 const modal_zone_add = document.getElementById("modal_zone_add");
-// modal_zone_add.addEventListener('click',add_Modal_Zone)
 const div_zone_conference = document.getElementById("div_zone_conference");
 const div_zone_serveurs = document.getElementById("div_zone_serveurs");
 const div_zone_securite = document.getElementById("div_zone_securite");
 const div_zone_Reception = document.getElementById("div_zone_Reception");
 const div_zone_personnel = document.getElementById("div_zone_personnel");
 const div_zone_archives = document.getElementById("div_zone_archives");
+
+function display_none_alert_zone() {
+  alert_zone.style.display = "none";
+}
 function modalZoneAdd(indi, zone) {
   switch (zone) {
     case "conference": {
-      arry_Staff_conference.push(arry_Staff[indi]);
-      arry_Staff.splice(indi, 1);
-      RenderInStaff();
-      RenderInZone_dynamic("conference");
+      if (
+        arry_Staff[indi].Role == "réception" ||
+        arry_Staff[indi].Role == "Techniciens IT" ||
+        arry_Staff[indi].Role == "Agents de sécurité" ||
+        arry_Staff[indi].Role == "Nettoyage" ||
+        arry_Staff[indi].Role == "Manager" ||
+        arry_Staff[indi].Role == "Autres"
+      ) {
+        arry_Staff_conference.push(arry_Staff[indi]);
+        arry_Staff.splice(indi, 1);
+        RenderInStaff();
+        RenderInZone_dynamic("conference");
+        check_arr()
+      } else {
+        alert_zone.style.display = "block";
+        setTimeout(display_none_alert_zone, 1000);
+      }
+
       break;
     }
     case "serveurs": {
-      arry_Staff_serveurs.push(arry_Staff[indi]);
-      arry_Staff.splice(indi, 1);
-      RenderInStaff();
-      RenderInZone_dynamic("serveurs");
+      if (
+        arry_Staff[indi].Role == "Techniciens IT" ||
+        arry_Staff[indi].Role == "Manager" ||
+        arry_Staff[indi].Role == "Nettoyage"
+      ) {
+        arry_Staff_serveurs.push(arry_Staff[indi]);
+        arry_Staff.splice(indi, 1);
+        RenderInStaff();
+        RenderInZone_dynamic("serveurs");
+        check_arr()
+      } else {
+        alert_zone.style.display = "block";
+        setTimeout(display_none_alert_zone, 1000);
+      }
+
       break;
     }
     case "securite": {
-      arry_Staff_securite.push(arry_Staff[indi]);
-      arry_Staff.splice(indi, 1);
-      RenderInStaff();
-      RenderInZone_dynamic("securite");
+      if (
+        arry_Staff[indi].Role == "Agents de sécurité" ||
+        arry_Staff[indi].Role == "Manager" ||
+        arry_Staff[indi].Role == "Nettoyage"
+      ) {
+        arry_Staff_securite.push(arry_Staff[indi]);
+        arry_Staff.splice(indi, 1);
+        RenderInStaff();
+        RenderInZone_dynamic("securite");
+        check_arr()
+      } else {
+        alert_zone.style.display = "block";
+        setTimeout(display_none_alert_zone, 1000);
+      }
+
       break;
     }
     case "Reception": {
-      arry_Staff_Reception.push(arry_Staff[indi]);
-      arry_Staff.splice(indi, 1);
-      RenderInStaff();
-      RenderInZone_dynamic("Reception");
+      if (
+        arry_Staff[indi].Role == "réception" ||
+        arry_Staff[indi].Role == "Manager" ||
+        arry_Staff[indi].Role == "Nettoyage"
+      ) {
+        arry_Staff_Reception.push(arry_Staff[indi]);
+        arry_Staff.splice(indi, 1);
+        RenderInStaff();
+        RenderInZone_dynamic("Reception");
+        check_arr()
+      } else {
+        alert_zone.style.display = "block";
+        setTimeout(display_none_alert_zone, 1000);
+      }
 
       break;
     }
     case "personnel": {
-      arry_Staff_personnel.push(arry_Staff[indi]);
-      arry_Staff.splice(indi, 1);
-      RenderInStaff();
-      RenderInZone_dynamic("personnel");
+      if (
+        arry_Staff[indi].Role == "réception" ||
+        arry_Staff[indi].Role == "Techniciens IT" ||
+        arry_Staff[indi].Role == "Agents de sécurité" ||
+        arry_Staff[indi].Role == "Nettoyage" ||
+        arry_Staff[indi].Role == "Manager" ||
+        arry_Staff[indi].Role == "Autres"
+      ) {
+        arry_Staff_personnel.push(arry_Staff[indi]);
+        arry_Staff.splice(indi, 1);
+        RenderInStaff();
+        RenderInZone_dynamic("personnel");
+        check_arr()
+      } else {
+        alert_zone.style.display = "block";
+        setTimeout(display_none_alert_zone, 1000);
+      }
+
       break;
     }
     case "archives": {
-      arry_Staff_archives.push(arry_Staff[indi]);
-      arry_Staff.splice(indi, 1);
-      RenderInStaff();
-      RenderInZone_dynamic("archives");
+      if (
+        arry_Staff[indi].Role == "réception" ||
+        arry_Staff[indi].Role == "Techniciens IT" ||
+        arry_Staff[indi].Role == "Agents de sécurité" ||
+        arry_Staff[indi].Role == "Manager" ||
+        arry_Staff[indi].Role == "Autres"
+      ) {
+        arry_Staff_archives.push(arry_Staff[indi]);
+        arry_Staff.splice(indi, 1);
+        RenderInStaff();
+        RenderInZone_dynamic("archives");
+        check_arr()
+      } else {
+        alert_zone.style.display = "block";
+        setTimeout(display_none_alert_zone, 1000);
+      }
       break;
     }
   }
 }
+function check_arr() {
+   
+    if(arry_Staff_serveurs.length==0){
+       linear_gradient_yes('serveurs')
+    }else{
+      linear_gradient_no('serveurs')
+    }
+  
+  
+    if(arry_Staff_securite.length==0){
+       linear_gradient_yes('securite')
+    }else{
+      linear_gradient_no('securite')
+    }
+  
+  
+   if(arry_Staff_Reception.length==0){
+       linear_gradient_yes('Reception')
+    }else{
+      linear_gradient_no('Reception')
+    }
+  
 
+  
+    if(arry_Staff_archives.length==0){
+       linear_gradient_yes('archives')
+    }else{
+      linear_gradient_no('archives')
+    }
+  
+}
+
+function linear_gradient_yes(zone) {
+  if (zone == "serveurs") {
+    document.querySelectorAll("#linear_gradient_div")[1].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3)), url("/image/Screenshot\ 2025-11-15\ 172934.png")';
+  }
+  if (zone == "securite") {
+    document.querySelectorAll("#linear_gradient_div")[2].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3)), url("/image/Screenshot\ 2025-11-15\ 173903.png")';
+  }
+  if (zone == "Reception") {
+    document.querySelectorAll("#linear_gradient_div")[3].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3)), url("/image/Screenshot\ 2025-11-15\ 174245.png")';
+  }
+
+  if (zone == "archives") {
+    document.querySelectorAll("#linear_gradient_div")[5].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0.3), rgba(255, 0, 0, 0.3)), url("/image/FEFWE.png")';
+  }
+}
+function linear_gradient_no(zone) {
+  if (zone == "serveurs") {
+    document.querySelectorAll("#linear_gradient_div")[1].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0), rgba(255, 0, 0, 0)), url("/image/Screenshot\ 2025-11-15\ 172934.png")';
+  }
+  if (zone == "securite") {
+    document.querySelectorAll("#linear_gradient_div")[2].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0), rgba(255, 0, 0, 0)), url("/image/Screenshot\ 2025-11-15\ 173903.png")';
+  }
+  if (zone == "Reception") {
+    document.querySelectorAll("#linear_gradient_div")[3].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0), rgba(255, 0, 0, 0)), url("/image/Screenshot\ 2025-11-15\ 174245.png")';
+  }
+
+  if (zone == "archives") {
+    document.querySelectorAll("#linear_gradient_div")[5].style.backgroundImage =
+      'linear-gradient(rgba(255, 0, 0, 0), rgba(255, 0, 0, 0)), url("/image/FEFWE.png")';
+  }
+}
 function RenderInZone_dynamic(zone) {
   if (zone == "conference") {
     div_zone_conference.innerHTML = "";
@@ -454,6 +640,7 @@ function modalZoneClose(zone, Email) {
     });
     RenderInStaff();
     RenderInZone_dynamic("conference");
+    check_arr()
   }
   if (zone == "serveurs") {
     arry_Staff_serveurs.forEach((Element, i) => {
@@ -464,6 +651,7 @@ function modalZoneClose(zone, Email) {
     });
     RenderInStaff();
     RenderInZone_dynamic("serveurs");
+    check_arr()
   }
   if (zone == "securite") {
     arry_Staff_securite.forEach((Element, i) => {
@@ -474,6 +662,7 @@ function modalZoneClose(zone, Email) {
     });
     RenderInStaff();
     RenderInZone_dynamic("securite");
+    check_arr()
   }
   if (zone == "Reception") {
     arry_Staff_Reception.forEach((Element, i) => {
@@ -484,6 +673,7 @@ function modalZoneClose(zone, Email) {
     });
     RenderInStaff();
     RenderInZone_dynamic("Reception");
+    check_arr()
   }
   if (zone == "personnel") {
     arry_Staff_personnel.forEach((Element, i) => {
@@ -494,6 +684,7 @@ function modalZoneClose(zone, Email) {
     });
     RenderInStaff();
     RenderInZone_dynamic("personnel");
+    check_arr()
   }
   if (zone == "archives") {
     arry_Staff_archives.forEach((Element, i) => {
@@ -504,32 +695,16 @@ function modalZoneClose(zone, Email) {
     });
     RenderInStaff();
     RenderInZone_dynamic("archives");
+    check_arr()
   }
 }
 const Search_profile = document.getElementById("Search_profile");
 Search_profile.addEventListener("input", () => {
-  let HTML = "";
   if (Search_profile.value == "") {
-    arry_Staff.forEach((Element) => {
-      HTML += `
-                        <div class="card profile-card p-3" id="profile">
-                        <div class="d-flex justify-content-center" style="width: 14vh; height: auto;">
-                        <div class=" justify-content-center">
-                        <img src="${Element.image}"
-                        class=" profile-image rounded-circle" style="width: 5vh; height: 5vh;">
-                        <h6 class="name">${Element.name}</h6>
-                        <button type="button" class="btn btn-secondary" data-bs-toggle="." data-bs-target=".">
-                        details
-                        </button>
-                        </div>
-                        </div>
-                        </div>
-                        `;
-    });
-
-    profile.innerHTML = HTML;
+    RenderInStaff();
+    return;
   }
-
+  let HTML = "";
   Search_profile_vaeli(Search_profile.value).forEach((Element) => {
     HTML += `
                         <div class="card profile-card p-3" id="profile">
@@ -554,10 +729,11 @@ function Search_profile_vaeli(Search_vaeli) {
   let Search_add = [];
   arry_Staff.forEach((Element) => {
     Element.Experiences.forEach((elme) => {
-      if (elme == Search_vaeli) {
+      if (elme.includes(Search_vaeli)) {
         Search_add.push(Element);
       }
     });
   });
   return Search_add;
 }
+check_arr()

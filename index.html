@@ -35,13 +35,20 @@
         </div>
     </nav>
     <!-- mine-->
+     <div id="alert_zone" style="display: none;">
+      <div class="alert alert-danger" role="alert">
+  L'accès à cette zone est restreint!
+</div>  
+     </div>
+     
     <div class="row ">
-        <div class="col-2 col-sm-12" style="background-color: grey;width: 15vh;height:30vh ;" id="sidebar">
+        
+        <div class="col-2 col-sm-12" style="background-color: grey;width: 30vh; " id="sidebar">
             <div class="row">
                 <span class="badge">
                     <h5 class="text-dark">Staff Members</h5>
                 </span>
-                <button id="" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                <button id="" type="button" class="btn btn-primary" onclick="not_value_form()" data-bs-toggle="modal"
                     data-bs-target="#exampleModal">
                     ajouter
                 </button>
@@ -67,11 +74,12 @@
 
         </div>
         <dvi class="col-10">
-            <div class="row">
-                <div class="col-5"
-                    style="background-image: url(/image/Screenshot\ 2025-11-15\ 172043.png);width: 63vh;height: 31vh;background-size: contain; background-repeat: no-repeat;">
-                    <div class="container text-center">
-                        <div class="row">
+            <div class="row" >
+                <div class="col-5" id="linear_gradient_div"
+                    style="background-image: linear-gradient(rgba(255, 0, 0, 0.0), rgba(255, 0, 0, 0.0)), url(/image/Screenshot\ 2025-11-15\ 172043.png);;width: 63vh;height: 31vh;background-size: contain; background-repeat: no-repeat;">
+                    <div class="container text-center" >
+                        <div class="row" >
+                            
                             <div class="col" >
                                 <span class="badge bg-primary  ">Salle de conférence
                                 </span>
@@ -87,8 +95,8 @@
 
 
                 </div>
-                <div class="col-3"
-                    style="background-image: url(/image/Screenshot\ 2025-11-15\ 172934.png);width: 36vh; height: 31vh; background-size: contain; background-repeat: no-repeat;">
+                <div class="col-3"id="linear_gradient_div"
+                    style="background-image:linear-gradient(rgba(255, 0, 0, .0), rgba(255, 0, 0, .0)), url(/image/Screenshot\ 2025-11-15\ 172934.png);width: 36vh; height: 31vh; background-size: contain; background-repeat: no-repeat;">
                     <div class="container text-center">
                         <div class="row" >
                             <div class="col ">
@@ -103,8 +111,8 @@
 
                 </div>
 
-                <div class="col-3"
-                    style="background-image: url(/image/Screenshot\ 2025-11-15\ 173903.png);width: 36vh; height: 31vh; background-size: contain; background-repeat: no-repeat;">
+                <div class="col-3"id="linear_gradient_div"
+                    style="background-image:linear-gradient(rgba(255, 0, 0, 0.0), rgba(255, 0, 0, 0.0)), url(/image/Screenshot\ 2025-11-15\ 173903.png);width: 36vh; height: 31vh; background-size: contain; background-repeat: no-repeat;">
                     <div class="container text-center">
                         <div class="row" >
                             <div class="col ">
@@ -120,8 +128,8 @@
 
 
                 </div>
-                <div class="col-3"
-                    style="background-image: url(/image/Screenshot\ 2025-11-15\ 174245.png);width: 61vh; height: 61vh; background-size: contain; background-repeat: no-repeat;">
+                <div class="col-3"id="linear_gradient_div"
+                    style="background-image:linear-gradient(rgba(255, 0, 0, 0.0), rgba(255, 0, 0, 0.0)), url(/image/Screenshot\ 2025-11-15\ 174245.png);width: 61vh; height: 61vh; background-size: contain; background-repeat: no-repeat;">
                     <div class="container text-center">
                         <div class="row" >
                             <div class="col">
@@ -135,8 +143,8 @@
 
 
                 </div>
-                <div class="col-3"
-                    style="background-image: url(/image/Screenshot\ 2025-11-16\ 011132.png);width: 37vh; height: 33vh; background-size: contain; background-repeat: no-repeat;">
+                <div class="col-3"id="linear_gradient_div"
+                    style="background-image:linear-gradient(rgba(255, 0, 0, 0.0), rgba(255, 0, 0, 0.0)), url(/image/Screenshot\ 2025-11-16\ 011132.png);width: 37vh; height: 33vh; background-size: contain; background-repeat: no-repeat;">
                     <div class="container text-center">
                         <div class="row" >
                             <div class="col">
@@ -151,8 +159,8 @@
 
 
                 </div>
-                <div class="col-3"
-                    style=" background-image: url(/image/FEFWE.png);width: 37vh; height: 32vh; background-size: contain; background-repeat: no-repeat;">
+                <div class="col-3" id="linear_gradient_div"
+                    style=" background-image: linear-gradient(rgba(255, 0, 0, 0.0), rgba(255, 0, 0, 0.0)),url(/image/FEFWE.png);width: 37vh; height: 32vh; background-size: contain; background-repeat: no-repeat;">
                     <div class="container text-center">
                         <div class="row" >
                             <div class="col">
